@@ -1,3 +1,44 @@
+//Examples of different types of Data in JS
+
+//string
+var string = "this is the string";
+console.log(string);
+
+//number
+var num = 100;
+console.log(num);
+
+//boolean values
+var hahahaha = true;
+console.log(hahahaha);
+
+//undefined
+var object;
+console.log(object);
+
+//null
+object = null;
+console.log(object);
+
+//example of array
+var array1 = [1,2,3,4,5,6];
+console.log(array1);
+
+var array2 = ["JHSGDFCJASHVD",1234567890,true];
+console.log(array2);
+
+var array3 = [[1,2],[1234567890987654321],["AAAAAAABBBBBBB"],["Who Let The Dogs Out?"]];
+console.log(array3);
+
+//to access the 1st element of the array
+console.log(array3[0][1]);
+
+array3.push("Kachra");
+console.log(array3);
+
+array3.pop();
+console.log(array3);
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -8,6 +49,7 @@ var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
 
+var gameState = 'onSling';
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -69,16 +111,19 @@ function draw(){
 }
 
 function mouseDragged(){
+    if(gameState !== 'launched'){
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = 'launched';
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+      //slingshot.attach(bird.body);
     }
 }
